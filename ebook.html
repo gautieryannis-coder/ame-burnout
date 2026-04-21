@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quand ton âme n'en peut plus – Lire en ligne · Yannis Gautier</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --ink:#0F1923;--ink2:#1E2D3D;--slate:#2C4A6E;
+  --accent:#4E8FBF;--accent-light:#A8CCE8;--accent-pale:#EBF4FB;
+  --cream:#F8F6F2;--warm:#EDE9E3;--muted:#7A8B99;--white:#FFFFFF;
+  --serif:'Cormorant Garamond',Georgia,serif;--sans:'DM Sans',system-ui,sans-serif;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--cream);color:var(--ink);line-height:1.75;font-size:16px}
+
+/* ── NAV ── */
+nav{
+  background:var(--ink);padding:16px 32px;
+  display:flex;align-items:center;justify-content:space-between;
+  border-bottom:1px solid rgba(78,143,191,0.2);
+  position:sticky;top:0;z-index:100;
+}
+.nav-name{
+  font-family:var(--serif);font-size:16px;font-weight:600;
+  color:var(--white);text-decoration:none;letter-spacing:.5px;
+}
+.nav-dl{
+  display:inline-flex;align-items:center;gap:7px;
+  background:transparent;border:1px solid rgba(78,143,191,0.4);
+  border-radius:7px;padding:8px 16px;font-family:var(--sans);font-size:12px;
+  font-weight:500;letter-spacing:1px;text-transform:uppercase;
+  color:var(--accent-light);text-decoration:none;transition:all .2s;
+}
+.nav-dl:hover{background:rgba(78,143,191,0.12);border-color:var(--accent-light)}
+.nav-dl svg{width:14px;height:14px}
+
+/* ── COVER BAND ── */
+.cover-band{
+  background:var(--ink2);padding:64px 24px 56px;text-align:center;
+  border-bottom:3px solid var(--accent);
+}
+.cb-label{
+  font-size:10px;font-weight:500;letter-spacing:4px;color:var(--accent);
+  text-transform:uppercase;margin-bottom:16px;
+}
+.cb-title{
+  font-family:var(--serif);font-size:clamp(38px,7vw,64px);font-weight:700;
+  color:var(--white);line-height:1.05;margin-bottom:10px;
+}
+.cb-title em{color:var(--accent-light);font-style:italic}
+.cb-rule{width:48px;height:1px;background:var(--accent);margin:16px auto}
+.cb-sub{
+  font-family:var(--serif);font-style:italic;font-size:clamp(14px,2vw,18px);
+  color:rgba(168,204,232,0.75);
+}
+.cb-author{
+  margin-top:22px;font-size:12px;letter-spacing:2px;text-transform:uppercase;
+  color:rgba(248,246,242,0.4);
+}
+
+/* ── READING AREA ── */
+.reading{max-width:700px;margin:0 auto;padding:60px 24px 80px}
+
+/* progress bar */
+.progress-bar{
+  position:fixed;top:0;left:0;height:3px;background:var(--accent);
+  width:0%;transition:width .1s;z-index:200;
+}
+
+/* hook block */
+.hook-block{
+  border-left:4px solid var(--accent);padding:20px 24px;
+  background:var(--accent-pale);border-radius:0 10px 10px 0;margin-bottom:48px;
+}
+.hook-block p{
+  font-family:var(--serif);font-size:clamp(17px,2.5vw,21px);font-weight:600;
+  color:var(--ink);line-height:1.65;margin-bottom:8px;
+}
+.hook-block p:last-child{margin-bottom:0}
+.hook-signal{
+  font-family:var(--serif);font-style:italic;font-size:16px;
+  color:var(--slate);margin-top:16px;font-weight:600;
+}
+
+/* chapter header */
+.ch-header{display:flex;align-items:center;gap:18px;margin:52px 0 24px}
+.ch-num-circle{
+  width:48px;height:48px;min-width:48px;background:var(--slate);border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--serif);font-size:20px;font-weight:700;color:var(--white);
+}
+.ch-title{
+  font-family:var(--serif);font-size:clamp(22px,3.5vw,28px);font-weight:700;
+  color:var(--ink);line-height:1.2;
+}
+.ch-rule{width:32px;height:2px;background:var(--accent);margin:6px 0 0}
+
+/* body text */
+.r-p{
+  font-family:var(--serif);font-size:clamp(16px,2.2vw,19px);
+  color:var(--ink2);line-height:1.85;margin-bottom:22px;text-align:justify;
+}
+.r-p strong{font-weight:700;color:var(--ink)}
+.r-p em{font-style:italic}
+
+/* verse */
+.verse{
+  text-align:center;margin:28px auto;padding:18px 24px;
+  border-top:1px solid rgba(78,143,191,0.2);border-bottom:1px solid rgba(78,143,191,0.2);
+  max-width:520px;
+}
+.verse p{
+  font-family:var(--serif);font-style:italic;font-size:clamp(14px,2vw,17px);
+  color:var(--muted);line-height:1.7;
+}
+
+/* punchline */
+.punchline{
+  background:var(--accent-pale);border-left:4px solid var(--accent);
+  padding:18px 22px;border-radius:0 8px 8px 0;margin:32px 0;
+}
+.punchline p{
+  font-family:var(--serif);font-style:italic;font-size:clamp(15px,2.2vw,18px);
+  color:var(--ink2);line-height:1.6;font-weight:600;
+}
+
+/* prayer */
+.prayer-block{
+  background:var(--ink);border-radius:12px;padding:36px 36px 32px;
+  margin:48px 0 0;text-align:center;
+}
+.prayer-label{
+  font-size:10px;font-weight:500;letter-spacing:4px;color:var(--accent);
+  text-transform:uppercase;margin-bottom:16px;
+}
+.prayer-text{
+  font-family:var(--serif);font-style:italic;font-size:clamp(15px,2vw,17px);
+  color:rgba(248,246,242,0.85);line-height:1.85;
+}
+
+/* CTA BLOCK */
+.cta-block{
+  background:var(--ink2);border-radius:12px;padding:40px 36px;
+  margin:56px 0 0;text-align:center;border-top:3px solid var(--accent);
+}
+.cta-block h3{
+  font-family:var(--serif);font-size:clamp(20px,3vw,26px);font-weight:700;
+  color:var(--white);margin-bottom:12px;
+}
+.cta-block p{font-size:14px;color:rgba(248,246,242,0.6);margin-bottom:24px;line-height:1.7}
+.cta-btns{display:flex;flex-wrap:wrap;gap:12px;justify-content:center}
+.cta-btn-a{
+  display:inline-block;background:var(--accent);color:var(--white);
+  border-radius:8px;padding:13px 26px;font-family:var(--sans);font-size:13px;
+  font-weight:500;letter-spacing:1px;text-transform:uppercase;text-decoration:none;
+  transition:background .2s;
+}
+.cta-btn-a:hover{background:#3A7BAE}
+.cta-btn-b{
+  display:inline-block;background:transparent;color:var(--accent-light);
+  border:1px solid rgba(78,143,191,0.4);border-radius:8px;padding:13px 26px;
+  font-family:var(--sans);font-size:13px;font-weight:500;letter-spacing:1px;
+  text-transform:uppercase;text-decoration:none;transition:all .2s;
+}
+.cta-btn-b:hover{background:rgba(78,143,191,0.12);border-color:var(--accent-light)}
+
+/* footer */
+footer{
+  background:var(--ink);border-top:1px solid rgba(78,143,191,0.12);
+  padding:28px 24px;text-align:center;
+}
+footer p{font-size:12px;color:rgba(248,246,242,0.22)}
+footer a{color:var(--accent-light);text-decoration:none}
+.f-name{color:var(--accent-light)}
+</style>
+</head>
+<body>
+<div class="progress-bar" id="pb"></div>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-name" href="index.html">Yannis Gautier</a>
+  <a class="nav-dl" href="ebook_burnout_spirituel.pdf" download>
+    <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 2v7M4 7l3 3 3-3M2 11h10"/></svg>
+    Télécharger le PDF
+  </a>
+</nav>
+
+<!-- COVER BAND -->
+<div class="cover-band">
+  <p class="cb-label">Guide spirituel</p>
+  <h1 class="cb-title">Quand ton âme<br><em>n'en peut plus</em></h1>
+  <div class="cb-rule"></div>
+  <p class="cb-sub">Sortir du burnout spirituel sans perdre la foi</p>
+  <p class="cb-author">Par Yannis Gautier</p>
+</div>
+
+<!-- READING -->
+<div class="reading">
+
+  <!-- HOOK -->
+  <div class="hook-block">
+    <p>Tu donnes encore. Mais tu n'as plus rien à donner.</p>
+    <p>Tu pries encore. Mais les mots sont creux.</p>
+    <p>Tu vas encore à l'église, tu fais encore les gestes, tu portes encore le sourire.</p>
+    <p>Mais à l'intérieur, quelque chose s'est éteint. Pas dramatiquement. Pas en une nuit. Doucement, insidieusement, silencieusement.</p>
+    <p class="hook-signal">Ce n'est pas de la faiblesse. C'est un signal.</p>
+  </div>
+
+  <!-- CHAPITRE 1 -->
+  <div class="ch-header">
+    <div class="ch-num-circle">1</div>
+    <div>
+      <h2 class="ch-title">Le mensonge que tu te racontes</h2>
+      <div class="ch-rule"></div>
+    </div>
+  </div>
+
+  <p class="r-p">Il y a un mensonge très répandu dans les milieux chrétiens. Il dit ceci : <em>un vrai croyant ne craque pas.</em> Un vrai croyant prie davantage quand il est à bout. Un vrai croyant sert plus fort quand il est épuisé. Un vrai croyant sourit même sous les décombres.</p>
+  <p class="r-p"><strong>C'est faux. Profondément faux.</strong></p>
+  <p class="r-p">Et ce mensonge a fait plus de dégâts dans des vies engagées que bien des péchés visibles. Tu t'es laissé convaincre que ressentir la fatigue était une trahison. Alors tu as continué. Tu as servi encore. Tu as donné encore. Tu as porté les autres encore — pendant que ton âme criait à l'aide dans le silence.</p>
+  <p class="r-p">Le résultat ? Un vide que ni la prière forcée ni le service supplémentaire ne peut combler. Ce n'est pas la foi qui est morte. C'est toi qui es épuisé de la vivre tout seul.</p>
+
+  <div class="punchline">
+    <p>« Servir Dieu en ignorant ta fatigue, ce n'est pas de la foi. C'est de l'orgueil déguisé en dévotion. »</p>
+  </div>
+
+  <!-- CHAPITRE 2 -->
+  <div class="ch-header">
+    <div class="ch-num-circle">2</div>
+    <div>
+      <h2 class="ch-title">Ce que le burnout révèle vraiment</h2>
+      <div class="ch-rule"></div>
+    </div>
+  </div>
+
+  <p class="r-p">Le burnout spirituel n'arrive pas aux gens qui ne croient pas. Il arrive aux gens qui croient <em>trop fort sans se laisser nourrir en retour.</em></p>
+  <p class="r-p">Il arrive à celui qui donne sans recevoir. À celle qui porte sans déposer. À celui qui sert sans se laisser servir. À celle qui prie pour tout le monde sauf pour elle-même. <strong>Le burnout spirituel est souvent la facture d'une générosité mal gérée.</strong></p>
+  <p class="r-p">Et voici ce qu'il révèle : quelque part en chemin, tu as glissé d'une relation avec Dieu vers une <em>performance pour Dieu.</em> Tu n'es plus dans sa présence — tu es dans son service. Et le service sans la présence vide l'âme plus vite que n'importe quelle épreuve.</p>
+
+  <div class="verse">
+    <p>« Car lorsque je suis faible, c'est alors que je suis fort. »<br><span style="font-size:13px;color:#9A9A9A">2 Corinthiens 12:10</span></p>
+  </div>
+
+  <div class="punchline">
+    <p>« Tu n'es pas une machine à servir Dieu. Tu es un enfant aimé de Dieu. Il y a une différence énorme. »</p>
+  </div>
+
+  <!-- CHAPITRE 3 -->
+  <div class="ch-header">
+    <div class="ch-num-circle">3</div>
+    <div>
+      <h2 class="ch-title">Ce que Dieu fait quand tu t'effondres</h2>
+      <div class="ch-rule"></div>
+    </div>
+  </div>
+
+  <p class="r-p">Il y a une scène dans la Bible qui devrait changer ta relation à l'épuisement pour toujours. Élie vient d'accomplir l'un des plus grands exploits prophétiques de l'histoire d'Israël. Il a fait descendre le feu du ciel. Il a défié seul quatre cent cinquante prophètes de Baal. Il a couru plus vite qu'un cheval.</p>
+  <p class="r-p">Et le lendemain ? Il s'effondre sous un genêt. Il dit :</p>
+
+  <div class="verse">
+    <p>« C'est assez ! Prends mon âme. »<br><span style="font-size:13px;color:#9A9A9A">1 Rois 19:4</span></p>
+  </div>
+
+  <p class="r-p">Élie — le prophète de feu — veut mourir. Et que fait Dieu face à cet effondrement ? Il ne sermonne pas. Il ne reprend pas. Il n'envoie pas une vision ou un message de correction. <strong>Il envoie un ange avec du pain chaud et de l'eau fraîche.</strong></p>
+
+  <div class="verse">
+    <p>« Lève-toi et mange, car le chemin est trop long pour toi. »<br><span style="font-size:13px;color:#9A9A9A">1 Rois 19:7</span></p>
+  </div>
+
+  <p class="r-p">Dieu ne te juge pas quand tu t'effondres. Il te nourrit. Il valide ta fatigue. Il reconnaît ton épuisement. Et il commence la restauration non pas par une leçon, mais par un repas.</p>
+
+  <div class="punchline">
+    <p>« Quand tu touches le fond, Dieu ne t'envoie pas un sermon. Il t'envoie du pain chaud. C'est ça, la grâce. »</p>
+  </div>
+
+  <!-- CHAPITRE 4 -->
+  <div class="ch-header">
+    <div class="ch-num-circle">4</div>
+    <div>
+      <h2 class="ch-title">Revenir à la source</h2>
+      <div class="ch-rule"></div>
+    </div>
+  </div>
+
+  <p class="r-p">Après le pain et le repos, Élie entend la voix de Dieu. Non pas dans le vent violent, non pas dans le tremblement de terre, non pas dans le feu — mais dans un <em>doux murmure.</em> C'est toujours comme ça quand tu es épuisé. Dieu ne te parle pas dans le bruit. Il te parle dans le silence que tu refuses de t'accorder.</p>
+  <p class="r-p">Revenir à la source, c'est revenir à la relation avant le rôle. C'est t'asseoir dans Sa présence sans agenda, sans performance, sans rien à prouver. C'est accepter d'être l'enfant avant d'être le serviteur.</p>
+
+  <div class="verse">
+    <p>« Ceux qui espèrent en l'Éternel renouvellent leur force. Ils prennent leur envol comme des aigles. »<br><span style="font-size:13px;color:#9A9A9A">Ésaïe 40:31</span></p>
+  </div>
+
+  <p class="r-p">Cette force ne se fabrique pas. Elle se reçoit. Et tu ne peux la recevoir qu'en arrêtant de tout porter seul. Ce que tu perds en refusant ce retour, c'est plus que de l'énergie. C'est la joie de croire. C'est la légèreté de marcher avec Lui.</p>
+
+  <div class="punchline">
+    <p>« Le vrai renouveau ne commence pas quand tu travailles plus fort pour Dieu. Il commence quand tu t'assieds enfin devant Lui. »</p>
+  </div>
+
+  <!-- CHAPITRE 5 -->
+  <div class="ch-header">
+    <div class="ch-num-circle">5</div>
+    <div>
+      <h2 class="ch-title">L'action décisive</h2>
+      <div class="ch-rule"></div>
+    </div>
+  </div>
+
+  <p class="r-p">Voici ce que je te demande de faire aujourd'hui. <strong>Pas demain. Aujourd'hui.</strong> Pose ce que tu portes. Pas définitivement. Pas pour abandonner. Juste pour t'asseoir. Pour souffler. Pour laisser Dieu être Dieu pendant que tu cesses d'essayer de tout tenir.</p>
+  <p class="r-p">Le repos n'est pas de la paresse — c'est de l'obéissance. Dieu lui-même s'est reposé le septième jour. Non par fatigue, mais pour établir un rythme. Un rythme que tu as probablement cassé depuis longtemps.</p>
+
+  <div class="verse">
+    <p>« Venez à moi, vous tous qui peinez et qui êtes chargés, et je vous donnerai du repos. »<br><span style="font-size:13px;color:#9A9A9A">Matthieu 11:28</span></p>
+  </div>
+
+  <p class="r-p">Il ne t'a pas dit de tenir plus fort. Il t'a dit de venir. Alors viens. Viens épuisé. Viens vide. Viens avec tes questions et tes silences. Viens avec ta honte d'être à bout. Il ne te demandera pas de te justifier. Il te donnera du pain chaud et de l'eau fraîche.</p>
+
+  <div class="punchline">
+    <p>« Le burnout spirituel n'est pas la fin de ta foi. C'est l'invitation à une foi plus profonde — une foi qui repose sur Sa force, pas sur la tienne. »</p>
+  </div>
+
+  <!-- PRAYER -->
+  <div class="prayer-block">
+    <p class="prayer-label">Prière</p>
+    <p class="prayer-text">Seigneur, je suis fatigué. Je n'ai plus les mots, plus les forces, parfois plus l'envie. Je viens comme Élie sous son genêt — à bout, vide, honnête. Touche-moi. Nourris-moi. Rappelle-moi que Tu n'as pas besoin de ma performance, seulement de ma présence. Renouvelle ma force à Ta source. Et apprends-moi à recevoir avant de donner. Amen.</p>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta-block">
+    <h3>Ce texte n'est que l'entrée.</h3>
+    <p>J'accompagne des hommes et des femmes qui veulent reconstruire une vie spirituelle profonde, durable, libérée de l'épuisement et ancrée dans l'Évangile. Pas une vie parfaite. Une vie vraie.</p>
+    <div class="cta-btns">
+      <a class="cta-btn-a" href="index.html">Rejoindre l'accompagnement →</a>
+      <a class="cta-btn-b" href="ebook_burnout_spirituel.pdf" download>Télécharger le PDF →</a>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <p>&copy; 2025 <span class="f-name">Yannis Gautier</span> &nbsp;·&nbsp; <a href="politique-confidentialite.html">Politique de confidentialité</a> &nbsp;·&nbsp; <a href="mentions-legales.html">Mentions légales</a></p>
+</footer>
+
+<script>
+window.addEventListener('scroll',function(){
+  const s=document.documentElement.scrollTop||document.body.scrollTop;
+  const h=document.documentElement.scrollHeight-document.documentElement.clientHeight;
+  document.getElementById('pb').style.width=(s/h*100)+'%';
+});
+</script>
+</body>
+</html>
